@@ -10,6 +10,10 @@ app.get("/time", (req, res) => {
   res.json({ time: now });
 });
 
+app.get("/health", (req, res) => {
+  res.json({ status: "ok" });
+});
+
 if (require.main === module) {
   const PORT = process.env.PORT || 3000;
   app.listen(PORT, () => {

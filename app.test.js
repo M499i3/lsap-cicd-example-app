@@ -15,5 +15,11 @@ describe("API Endpoints", () => {
     // basic ISO format check
     expect(() => new Date(res.body.time).toISOString()).not.toThrow();
   });
+
+  it("should return ok for /health", async () => {
+    const res = await request(app).get("/health");
+    expect(res.statusCode).toBe(200);
+    expect(res.body).toHaveProperty("status", "ok");
+  });
 });
 
