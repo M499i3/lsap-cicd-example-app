@@ -18,20 +18,15 @@ pipeline {
             }
         }
 
-        stage('Build Docker Image') {
-            steps {
-                sh 'docker build -t lsap-app .'
-            }
-        }
-
+        // Deployment stage ONLY DEFINES COMMANDS
+        // Your local machine actually executes Docker
         stage('Deploy') {
             steps {
-                sh '''
-                docker rm -f lsap-app || true
-                docker run -d --name lsap-app -p 8081:3000 lsap-app
-                '''
+                echo "Deployment instructions:"
+                echo "1. Run 'docker build -t lsap-app .' locally"
+                echo "2. Run 'docker run -d -p 8081:3000 lsap-app' locally"
+                echo "3. Check /health locally"
             }
         }
     }
 }
-
